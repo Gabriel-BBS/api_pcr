@@ -1,0 +1,2 @@
+
+alert("funcionou o javascript")
