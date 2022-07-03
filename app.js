@@ -4,25 +4,41 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const handlebars = require('express-handlebars');
 const app = express();
+const urlencodeParser = bodyParser.urlencoded({extended:false});
+
+//conecção com o banco de dados MYSQL
+const sql = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'DSAcurso',
+    port:3306
+});
+sql.query("use api_pcr");
 
 //template engine
 app.engine('handlebars',handlebars.engine({defaultLayout:'main'}));
 app.set('view engine','handlebars');
 
 
+
 //Routes and templates
-app.get("/:id?",function(req,res){
+//arquivo index
+app.get("/",function(req,res){
     res.render('index');
     // console.log(req.params.id);
 });
-//rota para o arquivo javascript
-app.get("principal",function(req,res){
-    res.sendFile(__dirname+'/js/principal.js');
-});
-//rota para o arquivo css
-app.get("principal",function(req,res){
-    res.sendFile(__dirname+'/css/style.css');
-});
+//arquivo inserir
+app.get("/inserir",function(req,res){res.render('inserir');});
+app.post("/controllerForm",urlencodeParser,function(req,res){
+    sql.query("insert into pessoas values(?,?)",[req.body.id,req.body.nome]);
+    res.render("controllerForm",{nome:req.body.nome});
+})
+
+//link para arquivo css,js e img
+app.use('/css',express.static('css'));
+app.use('/js',express.static('js'));
+app.use('/img',express.static('img'));
+
 //Start server
 app.listen(3000,function(req,res){
     console.log('Servidor está rodando');

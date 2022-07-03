@@ -1,2 +1,0 @@
-
-alert("funcionou o javascript")
