@@ -1,0 +1,18 @@
+
+<table>
+    <tr>
+        <td>botões</td>
+        <td>id</td>
+        <td>nome</td>
+    </tr>
+    {{#data}}
+        <tr>
+            <td>
+                <a href="update/{{id}}">atualizar</a>
+                <a href="deletar/{{id}}" class='deletar'>deletar</a>
+            </td>
+            <td>{{id}}</td>
+            <td>{{nome}}</td>
+        </tr>
+    {{/data}}
+</table>
