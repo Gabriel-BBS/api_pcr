@@ -36,7 +36,7 @@ app.get("/",function(req,res){
 //     if(err){
 //         res.render(err);
 //     }
-// });
+});
 //arquivo select
 app.get("/select/:id?",function(req,res){
     if(!req.params.id){
