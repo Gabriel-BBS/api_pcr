@@ -42,6 +42,7 @@ app.get("/select/:id?",function(req,res){
             connection.query("SELECT * FROM pessoas",function(err,results,fields){
                 res.render('select',{data:results});
             });
+            res.render(err);
         });
          
     }else{
