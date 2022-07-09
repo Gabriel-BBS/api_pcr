@@ -7,7 +7,7 @@ const app = express();
 const urlencodeParser = bodyParser.urlencoded({extended:false});
 
 //conecção com o banco de dados MYSQL
-const sql = mysql.createPool({
+const sql = mysql.createPoolCluster({
     host:'us-cdbr-east-06.cleardb.net',
     user:'b83967e24f0613',
     password:'5ed36278',
