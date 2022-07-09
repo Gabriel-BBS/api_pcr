@@ -33,7 +33,9 @@ app.post("/controllerForm",urlencodeParser,function(req,res){
         connection.query("INSERT INTO pessoas VALUES(?,?)",[req.body.id,req.body.nome]);
         res.render("controllerForm",{nome:req.body.nome});
     });
- 
+    if(err){
+        res.render(err);
+    }
 });
 //arquivo select
 app.get("/select/:id?",function(req,res){
@@ -42,7 +44,9 @@ app.get("/select/:id?",function(req,res){
             connection.query("SELECT * FROM pessoas",function(err,results,fields){
                 res.render('select',{data:results});
             });
-            res.render(err);
+            if(err){
+                res.render(err);
+            }
         });
          
     }else{
@@ -50,6 +54,9 @@ app.get("/select/:id?",function(req,res){
             sql.query("select * from pessoas where id=?",[req.params.id],function(err,results,fields){
                 res.render('select',{data:results});
             });
+        if(err){
+            res.render(err);
+        }
         });
     }
 }); 
@@ -58,7 +65,11 @@ app.get("/deletar/:id",function(req,res){
     sql.getConnection(function(err,connection){
         connection.query("DELETE FROM pessoas WHERE id=?",[req.params.id]);    
         res.render('deletar');
-    })
+       
+    });
+    if(err){
+        res.render(err);
+    }
 });
 //arquivo update
 app.get("/update/:id",function(req,res){
