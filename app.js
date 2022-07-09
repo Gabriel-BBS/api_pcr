@@ -39,19 +39,13 @@ app.post("/controllerForm",urlencodeParser,function(req,res){
 app.get("/select/:id?",function(req,res){
     if(!req.params.id){
         sql.getConnection(function(err,connection){
-            connection.query("SELECT * FROM pessoas",function(err,results,fields){
+            connection.query("SELECT * FROM heroku_edb8033e0c9551b.pessoas",function(err,results,fields){
                 res.render('select',{data:results});
             });
         });
          
-    }else{
-        sql.getConnection(function(err,connection){
-            connection.query("SELECT * FROM pessoas WHERE id=?",[rep.params.id],function(err,results,fields){
-                res.render('select',{data:results});
-            });
-        });
     }
-});
+}); 
 //arquivo deletar
 app.get("/deletar/:id",function(req,res){
     sql.getConnection(function(err,connection){
