@@ -11,7 +11,7 @@ const sql = mysql.createPool({
     host:'us-cdbr-east-06.cleardb.net',
     user:'b83967e24f0613',
     password:'5ed36278',
-    database:" heroku_edb8033e0c9551b?reconnect=true"
+    database:" heroku_edb8033e0c9551b"
 });
 let port = process.env.PORT || 3000;
 
