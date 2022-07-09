@@ -42,9 +42,9 @@ app.get("/select/:id?",function(req,res){
     if(!req.params.id){
         sql.getConnection(function(err,connection){
             connection.query("SELECT * FROM pessoas",function(err,results,fields){
-                res.render('select',{data:results});
+            return res.render('select',{data:results});
             });
-        if(err) throw err;
+        if(err){return res.render(err);}
         });
          
     }//else{
