@@ -46,7 +46,7 @@ app.get("/select/:id?",function(req,res){
          
     }else{
         sql.getConnection(function(err,connection){
-            connection.query("select * from pessoas where id=? order by id asc",[req.params.id],function(err,results,fields){
+            sql.query("select * from pessoas where id=?",[req.params.id],function(err,results,fields){
                 res.render('select',{data:results});
             });
         });
