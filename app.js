@@ -68,13 +68,13 @@ app.get("/",function(req,res){
 //         res.render('controllerUpdate');
 //     });  
 // });
-// //link para arquivo css,js e img
-// app.use('/css',express.static('css'));
-// app.use('/js',express.static('js'));
-// app.use('/img',express.static('img'));
-// app.use('/node_modules/bootstrap-icons/font/;',express.static('css'));
+//link para arquivo css,js e img
+app.use('/css',express.static('css'));
+app.use('/js',express.static('js'));
+app.use('/img',express.static('img'));
+app.use('/node_modules/bootstrap-icons/font/;',express.static('css'));
 
-// //Start server
-// app.listen(port,function(req,res){
-//     console.log('Servidor está rodando');
-// });
+//Start server
+app.listen(port,function(req,res){
+    console.log('Servidor está rodando');
+});
