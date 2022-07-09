@@ -39,11 +39,17 @@ app.post("/controllerForm",urlencodeParser,function(req,res){
 app.get("/select/:id?",function(req,res){
     if(!req.params.id){
         sql.getConnection(function(err,connection){
-            connection.query("SELECT * FROM heroku_edb8033e0c9551b.pessoas",function(err,results,fields){
+            connection.query("SELECT * FROM pessoas",function(err,results,fields){
                 res.render('select',{data:results});
             });
         });
          
+    }else{
+        sql.getConnection(function(err,connection){
+            connection.query("select * from pessoas where id=? order by id asc",[req.params.id],function(err,results,fields){
+                res.render('select',{data:results});
+            });
+        });
     }
 }); 
 //arquivo deletar
@@ -72,7 +78,6 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
 app.use('/css',express.static('css'));
 app.use('/js',express.static('js'));
 app.use('/img',express.static('img'));
-app.use('/node_modules/bootstrap-icons/font/;',express.static('css'));
 
 //Start server
 app.listen(port,function(req,res){
