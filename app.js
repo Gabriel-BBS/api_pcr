@@ -8,6 +8,7 @@ const urlencodeParser = bodyParser.urlencoded({extended:false});
 
 //conecção com o banco de dados MYSQL
 const sql = mysql.createPool({
+    
     host:'us-cdbr-east-06.cleardb.net',
     user:'b83967e24f0613',
     password:'5ed36278',
@@ -77,7 +78,6 @@ app.post("/controllerUpdate",urlencodeParser,function(req,res){
 app.use('/css',express.static('css'));
 app.use('/js',express.static('js'));
 app.use('/img',express.static('img'));
-app.use('/node_modules/bootstrap-icons/font/;',express.static('css'));
 
 //Start server
 app.listen(port,function(req,res){
