@@ -8,7 +8,7 @@ const urlencodeParser = bodyParser.urlencoded({extended:false});
 
 //conecção com o banco de dados MYSQL
 const sql = mysql.createPool({
-    connectionLimit : 10,
+    
     host:'us-cdbr-east-06.cleardb.net',
     user:'b83967e24f0613',
     password:'5ed36278',
@@ -42,15 +42,14 @@ app.get("/",function(req,res){
 app.get("/select/:id?",function(req,res){
     if(!req.params.id){
         sql.getConnection(function(err,connection){
-            if(err)
-                console.log(err);
-            else
-                connection.query("SELECT * FROM pessoas;",function(err,results){
-                res.render('select',{data:results}); 
-                if(err)
-                    console.log(err);   
-            });
-            connection.release();
+            if(err) throw err;
+            else {
+                connection.query("SELECT * FROM pessoas;",function(error,results){
+                    connection.release();
+                    res.render('select',{data:results});  
+                    if(error) throw error;
+                });
+            }
         });
     }//else{
     //     sql.getConnection(function(err,connection){
